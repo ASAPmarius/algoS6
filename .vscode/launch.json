@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:algoEntrainement}",
+            "name": "Debug algoEntrainement",
+            "program": "${workspaceFolder:algoEntrainement}/.build/debug/algoEntrainement",
+            "preLaunchTask": "swift: Build Debug algoEntrainement"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:algoEntrainement}",
+            "name": "Release algoEntrainement",
+            "program": "${workspaceFolder:algoEntrainement}/.build/release/algoEntrainement",
+            "preLaunchTask": "swift: Build Release algoEntrainement"
+        }
+    ]
+}
