@@ -217,10 +217,72 @@ class DummyItListe: ItListe {
     }
 }
 
+func testDicoAvecListNom() {
+    print("\n=== TEST DICO AVEC LISTENOM ===")
+    let dico = Dico(seuil: 66)
+    // Insertion des prénoms avec une valeur arbitraire (par exemple, la longueur du prénom)
+    for name in prenom {
+        dico.insert(cle: name, valeur: name.count)
+    }
+    // Insertion des noms avec une autre valeur arbitraire (par exemple, la longueur du nom + 100)
+    for name in nom {
+        dico.insert(cle: name, valeur: name.count + 100)
+    }
+    print("\nContenu du dictionnaire après insertion :")
+    print(dico)
+}
+
+func testDico() {
+    print("\n=== TEST DU DICTIONNAIRE (DICO) ===")
+    let dico = Dico(seuil: 50)
+
+    // Test insertion
+    print("\nInsertion de quelques éléments :")
+    dico.insert(cle: "pomme", valeur: 1)
+    dico.insert(cle: "banane", valeur: 2)
+    dico.insert(cle: "cerise", valeur: 3)
+    print(dico)
+
+    // Test insertion d'une clé déjà présente
+    print("\nInsertion d'une clé déjà présente (pomme) :")
+    dico.insert(cle: "pomme", valeur: 42) // Doit afficher une erreur
+
+    // Test appartient
+    print("\nTest d'appartenance :")
+    print("pomme appartient ? \(dico.appartient(cle: "pomme"))") // true
+    print("kiwi appartient ? \(dico.appartient(cle: "kiwi"))")   // false
+
+    // Test recherche
+    print("\nRecherche de valeurs :")
+    print("valeur pour 'banane' : \(dico.recherche(cle: "banane"))") // 2
+
+    // Test modification
+    print("\nModification de la valeur associée à 'cerise' :")
+    dico.modifie(cle: "cerise", val: 99)
+    print("valeur pour 'cerise' après modif : \(dico.recherche(cle: "cerise"))") // 99
+
+    // Test suppression
+    print("\nSuppression de 'banane' :")
+    dico.supprime(cle: "banane")
+    print("banane appartient ? \(dico.appartient(cle: "banane"))") // false
+
+    // Test suppression d'une clé inexistante (doit provoquer une erreur fatale)
+    // dico.supprime(cle: "kiwi") // Décommente pour tester l'erreur
+
+    // Test redimensionnement automatique
+    print("\nInsertion massive pour forcer le redimensionnement :")
+    for i in 0..<60 {
+        dico.insert(cle: "clé\(i)", valeur: i)
+    }
+    print(dico)
+}
+
 // Exécution des tests
 print("DÉBUT DES TESTS")
 //testStack()
 //testQueue()
 //testList()
 // testListChainne()
+// testDicoAvecListNom()
+testDico()
 print("FIN DES TESTS")
