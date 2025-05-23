@@ -277,6 +277,48 @@ func testDico() {
     print(dico)
 }
 
+func testArbreBin() {
+    print("\n=== TEST DE L'ARBRE BINAIRE ===")
+    
+    // Création d'un arbre vide
+    let arbre = ArbreBin()
+    print("Arbre vide ? \(arbre.ab_vide())") // true
+    
+    // Création d'un arbre avec une racine
+    arbre.creer_ab(val: 10)
+    print("Arbre vide après création ? \(arbre.ab_vide())") // false
+    do {
+        let racine = try arbre.racine()
+        print("Racine : \(racine)") // 10
+    } catch {
+        print("Erreur lors de l'accès à la racine")
+    }
+    
+    // Ajout de sous-arbres
+    let sag = ArbreBin(value: 5)
+    let sad = ArbreBin(value: 15)
+    do {
+        try arbre.enraciner(sag: sag, val: 10, sad: sad)
+        print("Nouvelle racine : \(try arbre.racine())") // 10
+        print("Sous-arbre gauche : \(try arbre.getSag()?.val ?? -1)") // 5
+        print("Sous-arbre droit : \(try arbre.getSad()?.val ?? -1)") // 15
+    } catch {
+        print("Erreur lors de l'enracinement")
+    }
+    
+    // Affichage indenté de l'arbre
+    print("\nAffichage de l'arbre :")
+    arbre.displayHorizontal()
+    
+    // Test accès à un arbre vide
+    let arbreVide = ArbreBin()
+    do {
+        _ = try arbreVide.racine()
+    } catch {
+        print("Erreur attendue : accès à la racine d'un arbre vide")
+    }
+}
+
 // Exécution des tests
 print("DÉBUT DES TESTS")
 //testStack()
@@ -284,5 +326,6 @@ print("DÉBUT DES TESTS")
 //testList()
 // testListChainne()
 // testDicoAvecListNom()
-testDico()
+// testDico()
+testArbreBin()
 print("FIN DES TESTS")
