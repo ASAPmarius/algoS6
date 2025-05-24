@@ -310,6 +310,14 @@ func testArbreBin() {
     print("\nAffichage de l'arbre :")
     arbre.displayHorizontal()
     
+    // Test du parcours en profondeur (inDepthCourse)
+    print("\nParcours en profondeur (postfixé) :")
+    arbre.inDepthCourse()
+    
+    // Test du parcours en largeur (BFS)
+    print("\nParcours en largeur (BFS) :")
+    arbre.breadthFirstSearch()
+    
     // Test accès à un arbre vide
     let arbreVide = ArbreBin()
     do {
@@ -317,6 +325,51 @@ func testArbreBin() {
     } catch {
         print("Erreur attendue : accès à la racine d'un arbre vide")
     }
+}
+
+func testArbreBinResearch() {
+    print("\n=== TEST DE L'ARBRE BINAIRE DE RECHERCHE (ABR) ===")
+    let abr = ABR()
+    
+    // Test arbre vide
+    print("Arbre vide ? \(abr.isEmpty())") // true
+    
+    // Insertion de valeurs
+    let valeurs = [10, 5, 15, 3, 7, 12, 18]
+    for v in valeurs {
+        abr.insert(val: v)
+        print("Inséré : \(v)")
+    }
+    
+    // Affichage de l'arbre
+    print("\nAffichage de l'arbre :")
+    print(abr.description)
+    
+    // Test recherche de valeurs
+    print("\nRecherche de valeurs :")
+    print("Contient 7 ? \(abr.contain(val: 7))")   // true
+    print("Contient 20 ? \(abr.contain(val: 20))") // false
+    
+    // Test accès à la racine
+    print("\nValeur à la racine : \(abr.val())") // 10
+    
+    // Test suppression d'une feuille
+    print("\nSuppression de la feuille 3")
+    abr.removeElt(3)
+    print(abr.description)
+    
+    // Test suppression d'un noeud avec un seul enfant
+    print("\nSuppression du noeud 5 (un seul enfant)")
+    abr.removeElt(5)
+    print(abr.description)
+    
+    // Test suppression d'un noeud avec deux enfants
+    print("\nSuppression du noeud 10 (deux enfants)")
+    abr.removeElt(10)
+    print(abr.description)
+    
+    // Test chainage arrière
+    print("\nVérification du chainage arrière : \(abr.verifierChainage())") // true
 }
 
 // Exécution des tests
@@ -327,5 +380,6 @@ print("DÉBUT DES TESTS")
 // testListChainne()
 // testDicoAvecListNom()
 // testDico()
-testArbreBin()
+// testArbreBin()
+testArbreBinResearch()
 print("FIN DES TESTS")

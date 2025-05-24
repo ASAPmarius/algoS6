@@ -60,6 +60,37 @@ class ArbreBin {
         self.sag = sag
         self.sad = sad
     }
+
+    func isLeaf() -> Bool{
+        return self.sag == nil && self.sad == nil
+    }
+
+    func inDepthCourse(){
+        if !self.ab_vide(){
+        if let sagNonEmpty: ArbreBin = self.sag {
+            sagNonEmpty.inDepthCourse()
+        }
+        if let sadNonEmpty: ArbreBin = self.sad {
+            sadNonEmpty.inDepthCourse()
+        }
+        print(self.val as Any)
+        }
+    }
+
+    func breadthFirstSearch(){
+        var listNodes: [ArbreBin] = []
+        listNodes.append(self)
+        while !listNodes.isEmpty {
+            if let abLeftNonVide: ArbreBin = listNodes[0].sag {
+                listNodes.append(abLeftNonVide)
+            }
+            if let abRightNonVide: ArbreBin = listNodes[0].sad {
+                listNodes.append(abRightNonVide)
+            }
+            print(listNodes[0].val as Any)
+            listNodes.remove(at: 0)
+        }
+    }
 }
 
 extension ArbreBin {
